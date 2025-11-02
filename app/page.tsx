@@ -2,6 +2,8 @@ import TrueFocus from "@/components/TrueFocus";
 import Image from "next/image";
 import { Suspense } from "react";
 import ImageAnimation from "./(home)/_components/Background";
+import Link from "next/link";
+import StarBorder from "@/components/StarBorder";
 
 export const metadata = {
   title: "Hello I'm ",
@@ -20,10 +22,20 @@ export default function Home() {
         </div>
         <div className=" rounded-lg md:text-4xl text-3xl font-medium mb-8">
           <TrueFocus
-            sentence="Project Management Editor Designer"
+            sentence="Marketing executive Project manager Designer"
             borderColor="orange"
           />
         </div>
+        <Link href="/about" className="">
+          <StarBorder
+            as="button"
+            className="custom-class"
+            color="cyan"
+            speed="5s"
+          >
+            Learn more about me
+          </StarBorder>
+        </Link>
       </div>
       <div className="md:w-1/2 relative h-96 md:h-auto">
         <ImageAnimation />
