@@ -1,10 +1,10 @@
 "use client";
 import clsx from "clsx";
-import Link from "next/dist/client/link";
 import { usePathname } from "next/navigation";
 import Footer from "./Footer";
 import Image from "next/image";
 import { motion } from "motion/react";
+import Link from "next/link";
 export default function Nav() {
   const path = usePathname();
   const menu = [

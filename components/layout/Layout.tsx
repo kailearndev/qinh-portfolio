@@ -20,14 +20,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       <section className="flex h-svh">
         <Nav />
         <AnimatePresence mode="wait">
-          <motion.section
-            key={pathname} // quan trọng để AnimatePresence detect route thay đổi
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -10 }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="flex-1 bg-white p-8 text-black overflow-y-auto"
-          >
+          <motion.section className="flex-1 p-8 overflow-y-auto">
             {children}
           </motion.section>
         </AnimatePresence>
