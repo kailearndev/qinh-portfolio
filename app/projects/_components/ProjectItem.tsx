@@ -3,7 +3,6 @@
 import { motion } from "motion/react";
 import { MoveRight } from "lucide-react";
 import Image from "next/image";
-import Logo from "./Logo";
 import Link from "next/link";
 
 export default function ProjectItem() {

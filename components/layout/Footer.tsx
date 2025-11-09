@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { SiFacebook, SiMapillary, SiPhonepe, SiTiktok } from "react-icons/si";
 
 export default function Footer() {
