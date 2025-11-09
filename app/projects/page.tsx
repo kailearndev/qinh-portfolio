@@ -1,22 +1,18 @@
-"use client";
+import ProjectItem from "./_components/ProjectItem";
 
-import ScrollStack, { ScrollStackItem } from "@/components/ScrollStack";
+export const metadata = {
+  title: "Projects",
+  description: "My Projects Page",
+};
 
 export default function Projects() {
   return (
-    <ScrollStack className="bg-white">
-      <ScrollStackItem>
-        <h2>Card 1</h2>
-        <p>This is the first card in the stack</p>
-      </ScrollStackItem>
-      <ScrollStackItem>
-        <h2>Card 2</h2>
-        <p>This is the second card in the stack</p>
-      </ScrollStackItem>
-      <ScrollStackItem>
-        <h2>Card 3</h2>
-        <p>This is the third card in the stack</p>
-      </ScrollStackItem>
-    </ScrollStack>
+    <section className="flex flex-col gap-10 ">
+      <div className="col-span-2  space-y-5">
+        <h1 className="text-2xl">Work</h1>
+        <span className="text-4xl font-bold">RECENT PROJECT</span>
+      </div>
+      <ProjectItem />
+    </section>
   );
 }

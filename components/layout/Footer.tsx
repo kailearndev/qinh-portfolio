@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { SiFacebook, SiMapillary, SiPhonepe, SiTiktok } from "react-icons/si";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -8,25 +9,25 @@ export default function Footer() {
       id: 1,
       name: "Facebook",
       href: "https://www.facebook.com/yourprofile",
-      icon: "/fb.jpg",
+      icon: SiFacebook,
     },
     {
       id: 2,
       name: "TikTok",
       href: "https://www.tiktok.com/@yourprofile",
-      icon: "/tiktok.jpg",
+      icon: SiTiktok,
     },
     {
       id: 3,
       name: "Phone",
       href: "tel:+1234567890",
-      icon: "/phone.jpg",
+      icon: SiPhonepe,
     },
     {
       id: 4,
       name: "Email",
       href: "mailto:youremail@example.com",
-      icon: "/mail.png",
+      icon: SiMapillary,
     },
   ];
   return (
@@ -36,17 +37,10 @@ export default function Footer() {
           <Link
             key={item.id}
             href={item.href}
-            className=" flex gap-2 items-center"
+            className=" flex gap-2 items-center hover:text-yellow-400 transition"
           >
-            <div className="relative w-6 h-6 ">
-              <Image
-                src={item.icon}
-                alt={item.name}
-                fill
-                className="rounded-full hover:ring-2 ring-amber-500 duration-250"
-              />
-            </div>
-            <div className=" text-xs text-white   ">{item.name}</div>
+            {<item.icon />}
+            <div className=" text-xs text-white ">{item.name}</div>
           </Link>
         ))}
       </div>
