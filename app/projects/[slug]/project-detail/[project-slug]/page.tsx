@@ -1,40 +1,26 @@
 import { createClient } from "@/lib/supabase";
-import { IProject } from "@/types/Jobs";
+import { IProjectItem } from "@/types/Jobs";
 import ProjectDetaiContent from "./_components/Detail";
 
-const getProjectsData = async (slug: string): Promise<IProject> => {
+const getProjectsData = async (slug: string): Promise<IProjectItem> => {
   const supabase = await createClient();
 
   const { data } = await supabase
-    .from("jobs")
-    .select("*, projects(*)", { count: "exact" })
+    .from("projects")
+    .select("*")
     .eq("slug", slug)
     .maybeSingle();
 
   return data;
 };
-export async function generateMetadata({
+
+export default async function ProjectDetail({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ "project-slug": string }>;
 }) {
-  const { slug } = await params;
-  const data = await getProjectsData(slug);
-  return {
-    title: data?.title || "Project Detail",
-    openGraph: {
-      title: data?.title || "Project Detail",
-      images: data.job_thumbnail,
-    },
-  };
-}
-export default async function Detail({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
+  const { "project-slug": slug } = await params;
   const projectData = await getProjectsData(slug);
 
-  return <ProjectDetaiContent content={""} />;
+  return <ProjectDetaiContent content={projectData.detail} />;
 }

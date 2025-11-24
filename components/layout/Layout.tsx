@@ -3,8 +3,8 @@
 import { ReactNode } from "react";
 import Nav from "./Nav";
 // import Footer from "./Footer";
+import { motion } from "motion/react";
 import { ThemeProvider } from "../theme-provider";
-import { AnimatePresence, motion } from "motion/react";
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
@@ -16,11 +16,10 @@ export default function Layout({ children }: { children: ReactNode }) {
     >
       <section className="flex h-svh">
         <Nav />
-        <AnimatePresence mode="wait">
-          <motion.section className="flex-1 p-8 overflow-y-auto">
-            {children}
-          </motion.section>
-        </AnimatePresence>
+
+        <motion.section className="flex-1 p-8 overflow-y-auto">
+          {children}
+        </motion.section>
       </section>
     </ThemeProvider>
   );
