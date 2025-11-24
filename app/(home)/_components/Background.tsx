@@ -3,7 +3,7 @@
 import { motion } from "motion/react";
 import Image from "next/image";
 
-export default function ImageMotion() {
+export default function ImageMotion({ url }: { url?: string }) {
   return (
     <div className="relative h-full w-full overflow-hidden">
       <motion.div
@@ -17,7 +17,7 @@ export default function ImageMotion() {
       >
         <Image
           fill
-          src="/bg.png"
+          src={url || "/hero-image.png"}
           alt="Hero"
           className="object-contain"
           priority
