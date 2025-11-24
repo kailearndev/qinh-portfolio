@@ -7,23 +7,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function ProjectItem({ data }: { data?: IJob[] | null }) {
-  const datas = [
-    {
-      id: 1,
-      title: "INTERNAL BRANDING & CORPORATE DESIGN",
-      description: "DYM VIETNAM Logo Design",
-      imageUrl: "/project-1.png",
-      slug: "dym-vietnam-logo-design",
-    },
-    {
-      id: 2,
-      title: "WEBSITE REDESIGN & DEVELOPMENT",
-      description: "Company Website Overhaul",
-      imageUrl: "/project-1.png",
-      slug: "company-website-overhaul",
-    },
-  ];
-
   return (
     <section className="grid xl:grid-cols-2 gap-16 py-20 text-gray-200">
       {data &&
@@ -70,7 +53,7 @@ export default function ProjectItem({ data }: { data?: IJob[] | null }) {
             </motion.div>
 
             {/* Text */}
-            <Link href={`/projects/${item.id}`} className="flex">
+            <Link href={`/projects/${item.slug}`} className="flex">
               <motion.div
                 whileHover={{ x: 10 }}
                 transition={{ duration: 0.3 }}

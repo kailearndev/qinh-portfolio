@@ -1,6 +1,5 @@
 import { createClient } from "@/lib/supabase";
 import { IProject } from "@/types/Jobs";
-import ProjectDetail from "./project-detail/page";
 
 const getProjectsData = async (slug: string): Promise<IProject> => {
   const supabase = await createClient();
@@ -36,5 +35,5 @@ export default async function Detail({
   const { slug } = await params;
   const projectData = await getProjectsData(slug);
 
-  return <ProjectDetail data={projectData} />;
+  return <ProjectDetaiContent content={projectData.} />;
 }

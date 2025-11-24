@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase";
 import { IJob } from "@/types/Jobs";
+import { Metadata } from "next";
 import ProjectItem from "./_components/ProjectItem";
 
 const supabase = await createClient();
@@ -12,14 +13,15 @@ const getProjectsData = async (): Promise<IJob[] | null> => {
   return data;
 };
 
-export const generateMetadata = {
-  title: "Projects",
+export const metadata: Metadata = {
+  title: "Projects - Qinh Portfolio",
   description: "A showcase of my recent projects and works.",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 export default async function Projects() {
   const projectsData = await getProjectsData();
-
-  console.log(projectsData);
 
   return (
     <section className="flex flex-col gap-10 ">
