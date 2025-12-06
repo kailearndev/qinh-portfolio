@@ -1,16 +1,43 @@
-import TrueFocus from "@/components/TrueFocus";
-import Image from "next/image";
-import { Suspense } from "react";
-import ImageAnimation from "./(home)/_components/Background";
-import Link from "next/link";
 import StarBorder from "@/components/StarBorder";
+import TrueFocus from "@/components/TrueFocus";
+import { createClient } from "@/lib/supabase";
+import { IHome } from "@/types/Home";
+import Link from "next/link";
+import ImageAnimation from "./(home)/_components/Background";
 
-export const metadata = {
-  title: "Hello I'm ",
-  description: "This is the home page",
+const getHomeData = async (): Promise<IHome> => {
+  const supabase = await createClient();
+  const { data } = await supabase
+    .from("users")
+    .select("*")
+    .eq("id", process.env.NEXT_USER_ID!)
+    .single();
+
+  return data;
 };
 
-export default function Home() {
+export const generateMetadata = async () => {
+  const homeData = await getHomeData();
+  return {
+    title: `Home - ${homeData.name}`,
+    description: `Welcome to the personal website of ${homeData.name}. Learn more about their work, projects, and interests.`,
+    openGraph: {
+      title: `Home - ${homeData.name}`,
+      description: `Welcome to the personal website of ${homeData.name}. Learn more about their work, projects, and interests.`,
+      images: [
+        {
+          url: homeData.avatar_url,
+          width: 800,
+          height: 600,
+          alt: `${homeData.name}'s Avatar`,
+        },
+      ],
+    },
+  };
+};
+export default async function Home() {
+  const homeData = await getHomeData();
+
   return (
     <section className="flex flex-col md:flex-row w-full h-full lg:p-20">
       <div className="flex flex-col w-full md:w-1/2 justify-center items-start p-8">
@@ -18,13 +45,10 @@ export default function Home() {
           Hello I'm
         </div>
         <div className=" text-3xl md:text-6xl font-bold mb-4">
-          NGUYEN VU LUAN
+          {homeData.name}
         </div>
         <div className=" rounded-lg md:text-4xl text-3xl font-medium mb-8">
-          <TrueFocus
-            sentence="Marketing executive Project manager Designer"
-            borderColor="orange"
-          />
+          <TrueFocus sentence={homeData.positions} borderColor="orange" />
         </div>
         <Link href="/about" className="">
           <StarBorder
@@ -38,7 +62,7 @@ export default function Home() {
         </Link>
       </div>
       <div className="md:w-1/2 relative h-96 md:h-auto">
-        <ImageAnimation />
+        <ImageAnimation url={homeData.avatar_url} />
       </div>
     </section>
   );

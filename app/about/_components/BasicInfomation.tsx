@@ -1,28 +1,37 @@
 "use client";
 import CountUp from "@/components/CountUp";
-import { Phone, Mail, MapPin, Globe, Quote } from "lucide-react";
+import { IAbout } from "@/types/About";
+import { IHome } from "@/types/Home";
+import { Globe, Mail, MapPin, Phone, Quote } from "lucide-react";
 import { motion } from "motion/react";
 
-export default function BasicInfomation() {
-  const data = [
-    { type: "Phone", value: "+84 123 456 789", icon: Phone },
-    { type: "Email", value: "example@example.com", icon: Mail },
-    { type: "Address", value: "123 Main St, City, Country", icon: MapPin },
-    { type: "Website", value: "www.example.com", icon: Globe },
+export default function BasicInfomation({
+  infomationData,
+  aboutData,
+}: {
+  infomationData: Pick<IHome, "phone" | "email" | "address" | "website">;
+  aboutData: IAbout;
+}) {
+  console.log(aboutData);
+
+  const datas = [
+    { type: "Phone", value: infomationData.phone, icon: Phone },
+    { type: "Email", value: infomationData.email, icon: Mail },
+    { type: "Address", value: infomationData.address, icon: MapPin },
+    { type: "Website", value: infomationData.website, icon: Globe },
   ];
   const basicData = [
     {
       id: 1,
-      experience: 5,
+      experience: aboutData.works_experienced,
       title: "Years Experience...",
-      description: "Expert in building scalable web applications",
+      description: aboutData.works_description,
     },
     {
       id: 2,
-      experience: 50,
+      experience: aboutData.client_worked,
       title: "Clients Worldwide...",
-      description:
-        "Across Japan and Southeast Asia, delivering impactful designs and marketing content.",
+      description: aboutData.client_description,
     },
   ];
   return (
@@ -33,7 +42,7 @@ export default function BasicInfomation() {
       className="flex flex-col justify-end gap-4 lg:mt-0 mt-8"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {data.map((item) => (
+        {datas.map((item) => (
           <div className="flex items-center gap-4" key={item.type}>
             <div className="bg-gray-200 p-2 rounded-full">
               <item.icon size={14} className="text-black " />
@@ -52,7 +61,7 @@ export default function BasicInfomation() {
               <h2 className="text-2xl font-bold ">
                 <CountUp
                   from={0}
-                  to={item.experience}
+                  to={Number(item.experience) || 0}
                   separator=","
                   direction="up"
                   delay={0.5}
@@ -63,7 +72,8 @@ export default function BasicInfomation() {
               </h2>
 
               <div className="mt-2 lg:text-lg line-clamp-3">
-                {item.description}
+                {item.description ||
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}
               </div>
             </div>
           </div>
@@ -72,8 +82,10 @@ export default function BasicInfomation() {
       <div className="bg-black  p-4 flex justify-center  items-center gap-4 ">
         <Quote className="-rotate-180 " size={36} />
         <span className=" italic font-semibold rounded-2xl">
-          “Driven by challenges, I find joy in pushing my limits and bringing
-          ideas to life through design.”
+          “
+          {aboutData.slogan ||
+            "Driven by challenges, I find joy in pushing my limits and bringing ideas to life through design."}
+          ”
         </span>
       </div>
     </motion.div>

@@ -1,46 +1,26 @@
 "use client";
 
-import CardSwap, { Card } from "@/components/CardSwap";
-import ScrollStack, { ScrollStackItem } from "@/components/ScrollStack";
+import { IExperience } from "@/types/Experience";
 import { motion } from "motion/react";
 
-export default function Experience() {
-  const data = [
-    {
-      title: "Design Team Leader / Project Leader / Event Leader",
-      company: "DYM VIETNAM Co., Ltd.",
-      duration: "2023 – Present",
-      description:
-        "Leading design & video teams, managing internal branding, recruitment campaigns, and creative projects for Japan market.",
-    },
-    {
-      title: "Editor & Project Manager",
-      company: "Green Sun Vietnam Co., Ltd.",
-      duration: "2021 – 2023",
-      description:
-        "Managed Southeast Asia marketing videos for Japanese clients.",
-    },
-    {
-      title: "Marketing Executive / Director Assistant",
-      company: "Green Sun Vietnam Co., Ltd.",
-      duration: "2019 – 2021",
-      description:
-        "Supported communication, sales materials, and corporate branding projects.",
-    },
-  ];
+export default function Experience({
+  experienceData,
+}: {
+  experienceData?: IExperience[] | null;
+}) {
   return (
     <div className="md:mx-auto py-12 md:py-20 px-6">
       <div className="relative">
         <h1 className="text-5xl  font-bold mb-4">Experience </h1>
-        {data.map(({ title, description, duration, company }, index) => (
+        {experienceData?.map((item, idx) => (
           <motion.div
-            key={index}
+            key={item.id}
             className="group relative"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{
               duration: 0.6,
-              delay: index * 0.1, // từng item trễ nhẹ
+              delay: idx * 0.1, // từng item trễ nhẹ
               ease: "easeOut",
             }}
             viewport={{ once: true, amount: 0.2 }}
@@ -52,17 +32,17 @@ export default function Experience() {
                   className="text-sm text-primary font-semibold"
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 + 0.2 }}
                 >
-                  {company}
+                  {item.company}
                 </motion.h6>
                 <motion.span
                   className="text-xs sm:text-sm text-muted-foreground"
                   initial={{ opacity: 0, x: -10 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 + 0.3 }}
                 >
-                  {duration}
+                  {item.duration}
                 </motion.span>
               </div>
 
@@ -75,16 +55,16 @@ export default function Experience() {
                   whileInView={{ scale: 1, opacity: 1 }}
                   transition={{
                     duration: 0.4,
-                    delay: index * 0.1 + 0.2,
+                    delay: idx * 0.1 + 0.2,
                     ease: "backOut",
                   }}
                   viewport={{ once: true }}
                 />
 
                 {/* Title + Desc */}
-                <h3 className="mt-2 text-lg font-semibold">{title}</h3>
+                <h3 className="mt-2 text-lg font-semibold">{item.position}</h3>
                 <p className="text-sm sm:text-base text-muted-foreground">
-                  {description}
+                  {item.description}
                 </p>
               </div>
             </div>
