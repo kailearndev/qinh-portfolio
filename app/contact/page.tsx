@@ -1,8 +1,8 @@
+export const dynamic = "force-dynamic";
+
 import { createClient } from "@/lib/supabase";
 import ContactPage from "./_components/contact-page";
 import { IHome } from "@/types/Home";
-
-export const revalidate = 60; // Revalidate every 60 seconds
 
 export async function generateMetadata() {
   return {
@@ -12,7 +12,7 @@ export async function generateMetadata() {
 }
 
 export default async function Contact() {
-  const supabase = await createClient();
+  const supabase = createClient();
   const { data } = await supabase.from("users").select("*").single<IHome>();
   if (!data) {
     return <p>No data found.</p>;
