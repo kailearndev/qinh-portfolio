@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import StarBorder from "@/components/StarBorder";
 import TrueFocus from "@/components/TrueFocus";
 import { createClient } from "@/lib/supabase";
@@ -6,7 +8,7 @@ import Link from "next/link";
 import ImageAnimation from "./(home)/_components/Background";
 
 const getHomeData = async (): Promise<IHome> => {
-  const supabase = await createClient();
+  const supabase = createClient();
   const { data } = await supabase
     .from("users")
     .select("*")
