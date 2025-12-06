@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { SiFacebook, SiMapillary, SiPhonepe, SiTiktok } from "react-icons/si";
 
-export default function Footer() {
+export default async function Footer() {
   const year = new Date().getFullYear();
   const footers = [
     {
@@ -42,9 +42,6 @@ export default function Footer() {
             <div className=" text-xs text-white ">{item.name}</div>
           </Link>
         ))}
-      </div>
-      <div className="text-center text-sm">
-        &copy; {year} My Portfolio. All rights reserved.
       </div>
     </footer>
   );

@@ -22,18 +22,18 @@ export default function Introduce({ data }: { data: IHome }) {
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 justify-items-center">
         <div>
           <Image
-            src={data.avatar_url || ""}
+            src={data?.avatar_url || "/default-avatar.png"}
             alt="Profile Picture"
             width={400}
             height={400}
             className="rounded-lg"
           />
           <div className="mt-6 text-4xl font-bold items-center gap-4 leading-8 flex justify-center bg-gradient-to-r from-red-500 to-blue-500 bg-clip-text text-transparent">
-            {data.name || "Your Name"}
+            {data?.name || "Your Name"}
             <Link
               download
               target="_blank"
-              href={data.file_cv || "/resume.pdf"}
+              href={data?.file_cv || "/resume.pdf"}
               className="flex xl:hidden gap-2 text-white animate-pulse "
             >
               <Download />
@@ -41,7 +41,9 @@ export default function Introduce({ data }: { data: IHome }) {
           </div>
 
           <RotatingText
-            texts={data.positions ? data.positions.split(", ") : []}
+            texts={
+              data?.positions ? data?.positions.split(", ") : ["Your Position"]
+            }
             mainClassName="px-2 sm:px-2 md:px-3  bg-transparent overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg mt-2 text-xl sm:text-2xl md:text-3xl font-semibold flex"
             staggerFrom={"last"}
             initial={{ y: "100%" }}
@@ -55,7 +57,7 @@ export default function Introduce({ data }: { data: IHome }) {
 
           <Link
             download
-            href={data.file_cv || "/resume.pdf"}
+            href={data?.file_cv || "/resume.pdf"}
             target="_blank"
             className="hidden xl:flex gap-2 border-2 duration-200 ease-linear hover:border-t-blue-500 hover:border-amber-200  border-b-rose-50 justify-center p-2 rounded-br-4xl rounded-tl-4xl"
           >

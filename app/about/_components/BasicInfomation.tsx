@@ -12,13 +12,11 @@ export default function BasicInfomation({
   infomationData: Pick<IHome, "phone" | "email" | "address" | "website">;
   aboutData: IAbout;
 }) {
-  console.log(aboutData);
-
   const datas = [
-    { type: "Phone", value: infomationData.phone, icon: Phone },
-    { type: "Email", value: infomationData.email, icon: Mail },
-    { type: "Address", value: infomationData.address, icon: MapPin },
-    { type: "Website", value: infomationData.website, icon: Globe },
+    { type: "Phone", value: infomationData?.phone, icon: Phone },
+    { type: "Email", value: infomationData?.email, icon: Mail },
+    { type: "Address", value: infomationData?.address, icon: MapPin },
+    { type: "Website", value: infomationData?.website, icon: Globe },
   ];
   const basicData = [
     {
