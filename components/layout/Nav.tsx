@@ -2,7 +2,6 @@
 
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
-import Footer from "./Footer";
 import Image from "next/image";
 import { motion } from "motion/react";
 import Link from "next/link";
@@ -21,7 +20,7 @@ export default function Nav() {
     { name: "Projects", href: "/projects", id: 3 },
     { name: "Contact", href: "/contact", id: 4 },
   ];
-
+  const year = new Date().getFullYear();
   return (
     <nav className="hidden p-8 w-60 lg:flex flex-col justify-between text-white">
       {/* Logo */}
@@ -82,8 +81,9 @@ export default function Nav() {
           })}
         </div>
       </div>
-
-      <Footer />
+      <div className="text-center text-sm">
+        &copy; {year} Quynh Portfolio. All rights reserved.
+      </div>
     </nav>
   );
 }
