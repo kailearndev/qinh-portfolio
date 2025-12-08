@@ -2,6 +2,7 @@ import StarBorder from "@/components/StarBorder";
 import TrueFocus from "@/components/TrueFocus";
 import { createClient } from "@/lib/supabase";
 import { IHome } from "@/types/Home";
+import { Metadata } from "next";
 import Link from "next/link";
 import ImageAnimation from "./(home)/_components/Background";
 
@@ -16,7 +17,7 @@ const getHomeData = async (): Promise<IHome> => {
   return data;
 };
 
-export const generateMetadata = async () => {
+export const generateMetadata = async (): Promise<Metadata> => {
   const homeData = await getHomeData();
   return {
     title: `Home - ${homeData.name}`,
