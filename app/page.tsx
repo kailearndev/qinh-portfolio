@@ -1,5 +1,3 @@
-export const dynamic = "force-dynamic";
-
 import StarBorder from "@/components/StarBorder";
 import TrueFocus from "@/components/TrueFocus";
 import { createClient } from "@/lib/supabase";
@@ -31,7 +29,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
       images: [
         {
           url: homeData?.avatar_url,
-          width: 800,
+          width: 600,
           height: 600,
           alt: `${homeData?.name}'s Avatar`,
         },
