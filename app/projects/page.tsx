@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { createClient } from "@/lib/supabase";
 import { IJob } from "@/types/Jobs";
 import { Metadata } from "next";

@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { createClient } from "@/lib/supabase";
 import { IAbout } from "@/types/About";
 import { IExperience } from "@/types/Experience";
@@ -6,7 +7,7 @@ import BasicInfomation from "./_components/BasicInfomation";
 import Experience from "./_components/Experience";
 import Introduce from "./_components/Introduce";
 
-const supabase = await createClient();
+const supabase = createClient();
 
 export const metadata = {
   title: "About Me",

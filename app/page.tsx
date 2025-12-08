@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import StarBorder from "@/components/StarBorder";
 import TrueFocus from "@/components/TrueFocus";
 import { createClient } from "@/lib/supabase";
@@ -7,7 +9,7 @@ import Link from "next/link";
 import ImageAnimation from "./(home)/_components/Background";
 
 const getHomeData = async (): Promise<IHome> => {
-  const supabase = await createClient();
+  const supabase = createClient();
   const { data } = await supabase
     .from("users")
     .select("*")
@@ -19,18 +21,19 @@ const getHomeData = async (): Promise<IHome> => {
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const homeData = await getHomeData();
+
   return {
-    title: `Home - ${homeData.name}`,
-    description: `Welcome to the personal website of ${homeData.name}. Learn more about their work, projects, and interests.`,
+    title: `Home - ${homeData?.name}`,
+    description: `Welcome to the personal website of ${homeData?.name}. Learn more about their work, projects, and interests.`,
     openGraph: {
-      title: `Home - ${homeData.name}`,
-      description: `Welcome to the personal website of ${homeData.name}. Learn more about their work, projects, and interests.`,
+      title: `Home - ${homeData?.name}`,
+      description: `Welcome to the personal website of ${homeData?.name}. Learn more about their work, projects, and interests.`,
       images: [
         {
-          url: homeData.avatar_url,
+          url: homeData?.avatar_url,
           width: 800,
           height: 600,
-          alt: `${homeData.name}'s Avatar`,
+          alt: `${homeData?.name}'s Avatar`,
         },
       ],
     },
@@ -46,10 +49,10 @@ export default async function Home() {
           Hello I'm
         </div>
         <div className=" text-3xl md:text-6xl font-bold mb-4">
-          {homeData.name}
+          {homeData?.name}
         </div>
         <div className=" rounded-lg md:text-4xl text-3xl font-medium mb-8">
-          <TrueFocus sentence={homeData.positions} borderColor="orange" />
+          <TrueFocus sentence={homeData?.positions} borderColor="orange" />
         </div>
         <Link href="/about" className="">
           <StarBorder
@@ -63,7 +66,7 @@ export default async function Home() {
         </Link>
       </div>
       <div className="md:w-1/2 relative h-96 md:h-auto">
-        <ImageAnimation url={homeData.avatar_url} />
+        <ImageAnimation url={homeData?.avatar_url} />
       </div>
     </section>
   );
