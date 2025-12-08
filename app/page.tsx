@@ -28,8 +28,8 @@ export const generateMetadata = async (): Promise<Metadata> => {
       description: `Welcome to the personal website of ${homeData?.name}. Learn more about their work, projects, and interests.`,
       images: [
         {
-          url: homeData?.avatar_url,
-          width: 600,
+          url: "https://gpqxvblgixxycwbqhefi.supabase.co/storage/v1/object/public/public-imgs/530769660_24541726732085898_4208605261289383448_n%20(1).jpg",
+          width: 800,
           height: 600,
           alt: `${homeData?.name}'s Avatar`,
         },
