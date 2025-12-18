@@ -20,7 +20,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${bricolage_grotesque.className} `}>
+      <body
+        className={`${bricolage_grotesque.className} bg-linear-to-l
+  from-[#07051a] 
+  via-[#2a1f5c]
+  to-[#4b3a8f]`}
+      >
         <Layout>{children}</Layout>
       </body>
     </html>

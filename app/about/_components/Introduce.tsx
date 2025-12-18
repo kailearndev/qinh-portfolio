@@ -28,7 +28,7 @@ export default function Introduce({ data }: { data: IHome }) {
             height={400}
             className="rounded-lg"
           />
-          <div className="mt-6 text-4xl font-bold items-center gap-4 leading-8 flex justify-center bg-gradient-to-r from-red-500 to-blue-500 bg-clip-text text-transparent">
+          <div className="mt-6 text-4xl font-bold items-center gap-4 leading-8 flex justify-center">
             {data?.name || "Your Name"}
             <Link
               download
@@ -59,7 +59,7 @@ export default function Introduce({ data }: { data: IHome }) {
             download
             href={data?.file_cv || "/resume.pdf"}
             target="_blank"
-            className="hidden xl:flex gap-2 border-2 duration-200 ease-linear hover:border-t-blue-500 hover:border-amber-200  border-b-rose-50 justify-center p-2 rounded-br-4xl rounded-tl-4xl"
+            className="hidden xl:flex gap-2   justify-center p-2 "
           >
             <Download size={20} className="animate-pulse" />
             <span>Download My CV</span>
