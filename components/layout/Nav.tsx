@@ -3,7 +3,7 @@
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 
 export default function Nav() {
@@ -57,25 +57,62 @@ export default function Nav() {
                 key={item.id}
                 href={item.href}
                 className={clsx(
-                  "relative md:text-xl uppercase tracking-wider transition-all duration-300 ease-in-out",
+                  "relative md:text-2xl uppercase tracking-wider transition-all duration-300 ease-in-out",
                   active
-                    ? "text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-pink-400 to-purple-400 font-semibold"
-                    : "text-gray-400 hover:text-amber-200"
+                    ? "text-transparent bg-clip-text bg-linear-to-r from-[#ce5be6] to-[#475bf1] font-bold "
+                    : "text-gray-200 hover:text-white hover:font-semibold"
                 )}
               >
                 {item.name}
 
                 {/* 🩶 gạch giữa text */}
-                {active && (
-                  <motion.span
-                    layoutId={`midline-${item.id}`}
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: 1 }}
-                    exit={{ scaleX: 0 }}
-                    transition={{ duration: 0.4, ease: "easeInOut" }}
-                    className="absolute left-0 top-1/2 w-12 h-[2px] -translate-y-1/2 bg-gradient-to-r from-amber-400 via-pink-400 to-purple-400 rounded-full shadow-[0_0_10px_rgba(251,191,36,0.5)] origin-center"
-                  />
-                )}
+                <AnimatePresence mode="wait">
+                  {active && (
+                    <motion.svg
+                      key={path} // 🔥 quan trọng: đổi route là animate lại
+                      width="20"
+                      height="32"
+                      viewBox="0 0 20 32"
+                      className="absolute -left-21 top-1/2 -translate-y-1/2 pointer-events-none z-20 w-full h-10 origin-left"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                    >
+                      <motion.path
+                        d="
+          M 4 18
+          C 18 10, 34 26, 52 18
+          C 70 10, 86 26, 104 18
+          C 118 14, 130 20, 136 18
+        "
+                        fill="none"
+                        stroke="url(#brush)"
+                        strokeWidth={3.8}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeDasharray="1.2 0.8"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: 1 }}
+                        exit={{ pathLength: 0 }}
+                        transition={{ duration: 0.5, ease: "easeInOut" }}
+                      />
+
+                      <defs>
+                        <linearGradient
+                          id="brush"
+                          x1="0"
+                          y1="0"
+                          x2="140"
+                          y2="0"
+                        >
+                          <stop offset="0%" stopColor="#ffffff" />
+                          <stop offset="50%" stopColor="#ffffff" />
+                          <stop offset="100%" stopColor="#ffffff" />
+                        </linearGradient>
+                      </defs>
+                    </motion.svg>
+                  )}
+                </AnimatePresence>
               </Link>
             );
           })}

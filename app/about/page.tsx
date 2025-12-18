@@ -6,6 +6,7 @@ import { IHome } from "@/types/Home";
 import BasicInfomation from "./_components/BasicInfomation";
 import Experience from "./_components/Experience";
 import Introduce from "./_components/Introduce";
+import ExpertiseSection from "./_components/Skills";
 
 const supabase = createClient();
 
@@ -45,8 +46,9 @@ export default async function About() {
     <section className="flex flex-col h-svh">
       <div className="lg:p-20 p-10 grid grid-cols-1 xl:grid-cols-2 gap-8">
         <Introduce data={homeData} />
-        <BasicInfomation infomationData={homeData} aboutData={aboutData} />
+        <BasicInfomation aboutData={aboutData} />
       </div>
+      <ExpertiseSection />
       <Experience experienceData={experienceData} />
     </section>
   );

@@ -2,7 +2,6 @@ import Link from "next/link";
 import { SiFacebook, SiMapillary, SiPhonepe, SiTiktok } from "react-icons/si";
 
 export default async function Footer() {
-  const year = new Date().getFullYear();
   const footers = [
     {
       id: 1,
