@@ -1,6 +1,6 @@
 "use client";
 
-import DownloadButton from "@/components/dowload-button";
+import DownloadButton from "@/components/DownloadButton";
 import { IHome } from "@/types/Home";
 import { Quote } from "lucide-react";
 import { motion } from "motion/react";
