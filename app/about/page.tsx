@@ -3,7 +3,6 @@ import { createClient } from "@/lib/supabase";
 import { IAbout } from "@/types/About";
 import { IExperience } from "@/types/Experience";
 import { IHome } from "@/types/Home";
-import BasicInfomation from "./_components/BasicInfomation";
 import Experience from "./_components/Experience";
 import Introduce from "./_components/Introduce";
 import ExpertiseSection from "./_components/Skills";
@@ -46,8 +45,7 @@ export default async function About() {
   return (
     <section className="flex flex-col overflow-x-hidden">
       <>
-        <Introduce data={homeData} />
-        <BasicInfomation aboutData={aboutData} />
+        <Introduce data={homeData} slogan={aboutData.slogan} />
       </>
       <ExpertiseSection />
       <Experience experienceData={experienceData} />
