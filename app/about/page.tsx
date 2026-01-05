@@ -44,9 +44,8 @@ export default async function About() {
 
   return (
     <section className="flex flex-col overflow-hidden ">
-      <>
-        <Introduce data={homeData} slogan={aboutData.slogan} />
-      </>
+      <Introduce data={homeData} slogan={aboutData.slogan} />
+
       <ExpertiseSection />
       <Experience experienceData={experienceData} />
     </section>

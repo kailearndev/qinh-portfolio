@@ -33,7 +33,7 @@ export default async function Home() {
 
   return (
     // Sử dụng items-center để text và ảnh luôn cân đối theo trục dọc
-    <section className="flex flex-col lg:flex-row w-full h-full min-h-[80vh] items-center justify-between">
+    <section className="flex flex-col lg:flex-row w-full h-full  items-center justify-between">
       {/* TEXT SECTION: Chiếm 55% để text bay bổng hơn */}
       <div className="flex flex-col w-full lg:w-[55%] justify-center items-start p-6 md:p-12 z-20">
         <header className="space-y-2">
