@@ -37,9 +37,6 @@ export default async function Home() {
       {/* TEXT SECTION: Chiếm 55% để text bay bổng hơn */}
       <div className="flex flex-col w-full lg:w-[55%] justify-center items-start p-6 md:p-12 z-20">
         <header className="space-y-2">
-          <span className="text-orange-500 font-mono tracking-widest uppercase text-sm md:text-base">
-            Introduction
-          </span>
           <h1 className="text-4xl md:text-7xl font-light text-white leading-tight">
             Hello, I&apos;m <br />
             <span className="font-black bg-gradient-to-r from-white via-white/80 to-white/50 bg-clip-text text-transparent">
