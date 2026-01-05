@@ -1,8 +1,6 @@
 "use client";
 
-import DownloadButton from "@/components/DownloadButton";
 import { IHome } from "@/types/Home";
-import { Quote } from "lucide-react";
 import { motion } from "motion/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -42,60 +40,36 @@ export default function Introduce({
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
       >
-        {/* CỘT TRÁI: NỘI DUNG VĂN BẢN */}
-        <div className="order-2 lg:order-1 flex flex-col  text-center lg:text-left">
-          <div className="space-y-2">
-            <p className="text-primary font-medium tracking-widest uppercase">
-              Nice to meet you!
-            </p>
-            <h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
-              WELCOME TO MY <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500">
-                CREATIVE WORLD
+        <div className="order-2 lg:order-1 flex flex-col text-center lg:text-left">
+          <div className="flex flex-col gap-1 md:gap-2">
+            {/* Phần dẫn nhập: Giữ màu Primary của bạn */}
+            <div className="space-y-0">
+              <p className="text-primary font-light tracking-[0.4em] uppercase text-xs md:text-sm opacity-80">
+                Nice to
+              </p>
+              <p className="text-white font-bold tracking-widest uppercase text-sm md:text-base">
+                Meet you!
+              </p>
+            </div>
+
+            {/* Khối tiêu đề chính */}
+            <h1 className="flex flex-col mt-4 md:mt-6">
+              {/* Dòng 1: WELCOME - Mạnh mẽ */}
+              <span className="text-6xl lg:text-9xl font-black tracking-tighter text-white leading-[0.8]">
+                WELCOME
+              </span>
+
+              {/* Dòng 2: TO MY - Đã phóng to, dùng font Bold và Uppercase cho hài hòa */}
+              <span className="text-3xl md:text-6xl font-black tracking-tight uppercase text-white/20 my-2 md:my-4 leading-none">
+                TO MY
+              </span>
+
+              {/* Dòng 3: CREATIVE WORLD - Giữ nguyên dải màu từ Blue đến Pink của bạn */}
+              <span className="relative inline-block text-5xl md:text-8xl font-black uppercase leading-[0.9] tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500">
+                Creative <br className="md:hidden" /> World
               </span>
             </h1>
           </div>
-
-          {/* --- PHẦN SLOGAN ĐƯỢC CHÈN VÀO ĐÂY --- */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-            className="relative max-w-lg mt-4 group"
-          >
-            <div className="relative flex items-start gap-4 p-5 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl overflow-hidden">
-              {/* Hiệu ứng Glow chạy ngầm */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-2xl opacity-50" />
-
-              {/* Icon Quote nhảy nhẹ */}
-              <motion.div
-                animate={{ y: [0, -5, 0] }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 3,
-                  ease: "easeInOut",
-                }}
-                className="flex-shrink-0"
-              >
-                <Quote className="text-blue-400 rotate-180" size={28} />
-              </motion.div>
-
-              {/* Chữ Typing */}
-              <p className="italic font-medium leading-relaxed bg-gradient-to-r from-blue-200 via-white to-purple-200 bg-clip-text text-transparent">
-                “
-                <TypingText
-                  text={
-                    slogan || // Lấy từ data nếu có
-                    "Driven by challenges, I find joy in pushing my limits and bringing ideas to life through design."
-                  }
-                />
-                ”
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
-              <DownloadButton cvUrl={data?.file_cv || "/resume.pdf"} />
-            </div>
-          </motion.div>
         </div>
 
         {/* CỘT PHẢI: HÌNH ẢNH (Giữ nguyên) */}
