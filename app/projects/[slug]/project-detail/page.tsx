@@ -12,6 +12,9 @@ export default function ProjectDetail({ data }: { data: IProject }) {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  console.log(data);
+
   return (
     <ClickSpark
       sparkColor="#fff"
@@ -54,7 +57,7 @@ export default function ProjectDetail({ data }: { data: IProject }) {
               >
                 <Image
                   fill
-                  src={item.thumnail_url}
+                  src={item.thumnail_url || "/no-img.webp"}
                   alt={item.title}
                   className="object-cover rounded-2xl brightness-90 hover:brightness-110 transition-all duration-500"
                 />

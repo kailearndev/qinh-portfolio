@@ -1,22 +1,23 @@
 "use client";
-import { animate, motion, type Variants } from "motion/react";
+import { motion, type Variants } from "motion/react";
 
 const skills = [
   {
-    title: "Editor",
-    desc: "Video editing, motion cut, short-form content cho TikTok / Reels",
-    icon: "🎬",
-    glow: "from-pink-500/30",
-  },
-  {
     title: "Designer",
-    desc: "UI/UX, Web/App design, Figma, Design system",
+    desc: "Landing pages, banners/posters, and branding assets.\nVisual, web, and UI/UX design.",
     icon: "🎨",
     glow: "from-purple-500/30",
   },
   {
-    title: "Marketing",
-    desc: "Content strategy, social growth, branding, ads",
+    title: "Editor",
+    desc: "Video editing for TikTok, Reels, and YouTube, etc.\nImage and document editing based on client needs.",
+    icon: "🎬",
+    glow: "from-pink-500/30",
+  },
+
+  {
+    title: "Marketer",
+    desc: "Recruitment and B2B marketing.\nBranding, content strategy, and lead generation.",
     icon: "📈",
     glow: "from-amber-500/30",
   },
