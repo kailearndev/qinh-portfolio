@@ -33,6 +33,7 @@ const getExperienceData = async (): Promise<IExperience[] | null> => {
 
 const getAboutData = async (): Promise<IAbout> => {
   const { data } = await supabase.from("about").select("*").single();
+
   return data;
 };
 export default async function About() {
@@ -44,7 +45,7 @@ export default async function About() {
 
   return (
     <section className="flex flex-col h-svh">
-      <div className="lg:p-20 p-10 grid grid-cols-1 xl:grid-cols-2 gap-8">
+      <div>
         <Introduce data={homeData} />
         <BasicInfomation aboutData={aboutData} />
       </div>

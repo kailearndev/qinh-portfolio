@@ -21,52 +21,66 @@ const getHomeData = async (): Promise<IHome> => {
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const homeData = await getHomeData();
-
   return {
     title: `Home - ${homeData?.name}`,
-    description: `Welcome to the personal website of ${homeData?.name}. Learn more about their work, projects, and interests.`,
+    description: `Welcome to the personal website of ${homeData?.name}.`,
     openGraph: {
-      title: `Home - ${homeData?.name}`,
-      description: `Welcome to the personal website of ${homeData?.name}. Learn more about their work, projects, and interests.`,
-      images: [
-        {
-          url: homeData?.avatar_url,
-          width: 800,
-          height: 600,
-          alt: `${homeData?.name}'s Avatar`,
-        },
-      ],
+      images: [{ url: homeData?.avatar_url || "" }],
     },
   };
 };
+
 export default async function Home() {
   const homeData = await getHomeData();
 
   return (
-    <section className="flex flex-col md:flex-row w-full h-full lg:p-20">
-      <div className="flex flex-col w-full md:w-1/2 justify-center items-start p-8">
-        <div className=" text-3xl md:text-6xl font-semibold  mb-4">
-          Hello I'm
+    // Sử dụng items-center để text và ảnh luôn cân đối theo trục dọc
+    <section className="flex flex-col lg:flex-row w-full h-full min-h-[80vh] items-center justify-between">
+      {/* TEXT SECTION: Chiếm 55% để text bay bổng hơn */}
+      <div className="flex flex-col w-full lg:w-[55%] justify-center items-start p-6 md:p-12 z-20">
+        <header className="space-y-2">
+          <span className="text-orange-500 font-mono tracking-widest uppercase text-sm md:text-base">
+            Introduction
+          </span>
+          <h1 className="text-4xl md:text-7xl font-light text-white leading-tight">
+            Hello, I&apos;m <br />
+            <span className="font-black bg-gradient-to-r from-white via-white/80 to-white/50 bg-clip-text text-transparent">
+              {homeData?.name}
+            </span>
+          </h1>
+        </header>
+
+        {/* Cải thiện hiển thị Position */}
+        <div className="mt-6 min-h-[60px] md:text-4xl text-2xl font-medium text-gray-400">
+          <TrueFocus
+            sentence={homeData?.positions || "Creative Designer"}
+            borderColor="#ce5be6"
+          />
         </div>
-        <div className=" text-3xl md:text-6xl font-bold mb-4">
-          {homeData?.name}
-        </div>
-        <div className=" rounded-lg md:text-4xl text-3xl font-medium mb-8">
-          <TrueFocus sentence={homeData?.positions} borderColor="orange" />
-        </div>
-        <Link href="/about" className="">
+
+        <p className="mt-6 mb-10 text-gray-400 max-w-md leading-relaxed text-lg">
+          Crafting digital experiences through clean code and aesthetic design.
+          Based in Vietnam, working globally.
+        </p>
+
+        <Link href="/about">
           <StarBorder
             as="button"
-            className="custom-class"
+            className="px-8 py-4 text-sm font-bold uppercase tracking-[0.2em]"
             color="cyan"
-            speed="5s"
+            speed="3s"
           >
-            Learn more about me
+            Explore My Work
           </StarBorder>
         </Link>
       </div>
-      <div className="md:w-1/2 relative h-96 md:h-auto">
-        <ImageAnimation url={homeData?.avatar_url} />
+
+      {/* IMAGE SECTION: Chiếm 45% */}
+      <div className="w-full lg:w-[45%] h-[50vh] lg:h-full relative flex items-center justify-center">
+        <ImageAnimation
+          url={homeData?.avatar_url}
+          // Chuyển positions vào nếu ImageAnimation cần hiển thị text phụ
+        />
       </div>
     </section>
   );
