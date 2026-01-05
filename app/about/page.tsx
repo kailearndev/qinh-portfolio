@@ -44,11 +44,11 @@ export default async function About() {
   ]);
 
   return (
-    <section className="flex flex-col h-svh">
-      <div>
+    <section className="flex flex-col overflow-x-hidden">
+      <>
         <Introduce data={homeData} />
         <BasicInfomation aboutData={aboutData} />
-      </div>
+      </>
       <ExpertiseSection />
       <Experience experienceData={experienceData} />
     </section>

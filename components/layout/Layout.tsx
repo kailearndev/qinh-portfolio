@@ -18,7 +18,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         <section className="flex h-svh relative">
           <Nav />
 
-          <section className="flex-1 p-8 overflow-y-auto mt-20 lg:mt-0">
+          <section className="flex-1 p-8 mt-20 lg:mt-0 overflow-y-auto">
             {children}
           </section>
         </section>
