@@ -1,5 +1,3 @@
-export const dynamic = "force-dynamic";
-
 import StarBorder from "@/components/StarBorder";
 import TrueFocus from "@/components/TrueFocus";
 import { createClient } from "@/lib/supabase";
