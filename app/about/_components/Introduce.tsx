@@ -1,10 +1,10 @@
 "use client";
 
+import DownloadButton from "@/components/dowload-button";
 import { IHome } from "@/types/Home";
-import { Download, Quote } from "lucide-react";
+import { Quote } from "lucide-react";
 import { motion } from "motion/react";
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 
 // Component TypingText giữ nguyên logic của bạn
@@ -54,18 +54,6 @@ export default function Introduce({
             </h1>
           </div>
 
-          <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
-            <Link
-              download
-              href={data?.file_cv || "/resume.pdf"}
-              target="_blank"
-              className="flex items-center gap-2 bg-black dark:bg-white text-white dark:text-black px-6 py-3 rounded-full font-bold hover:scale-105 transition-transform shadow-lg"
-            >
-              <Download size={20} />
-              <span>Download My CV</span>
-            </Link>
-          </div>
-
           {/* --- PHẦN SLOGAN ĐƯỢC CHÈN VÀO ĐÂY --- */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -101,6 +89,9 @@ export default function Introduce({
                 />
                 ”
               </p>
+            </div>
+            <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
+              <DownloadButton cvUrl={data?.file_cv || "/resume.pdf"} />
             </div>
           </motion.div>
         </div>
