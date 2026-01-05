@@ -33,7 +33,7 @@ export default function Introduce({
   slogan?: string;
 }) {
   return (
-    <section className="min-h-[80vh] flex items-center justify-center py-10 overflow-hidden">
+    <section className="min-h-[80vh] flex items-center justify-center overflow-hidden">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

@@ -72,7 +72,7 @@ const iconVariants: Variants = {
 
 export default function ExpertiseSection() {
   return (
-    <section className="relative py-24">
+    <section className="relative ">
       {/* Background */}
       <div className="absolute inset-0 -z-10 " />
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-purple-600/20 blur-[140px] -z-10" />

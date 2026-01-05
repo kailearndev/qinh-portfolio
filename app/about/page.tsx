@@ -43,7 +43,7 @@ export default async function About() {
   ]);
 
   return (
-    <section className="flex flex-col overflow-x-hidden">
+    <section className="flex flex-col overflow-hidden ">
       <>
         <Introduce data={homeData} slogan={aboutData.slogan} />
       </>

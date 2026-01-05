@@ -15,7 +15,7 @@ export default function ProjectItem({ data }: { data?: IJob[] | null }) {
   }, []);
 
   return (
-    <section className="grid xl:grid-cols-2 gap-16 py-20 text-gray-200">
+    <section className="grid xl:grid-cols-2 gap-16  text-gray-200">
       {data &&
         data.map((item, index) =>
           mounted ? (
