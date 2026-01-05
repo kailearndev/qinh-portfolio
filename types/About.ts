@@ -5,4 +5,5 @@ export interface IAbout {
   client_description: string;
   slogan: string;
   works_experienced: string;
+  about_thumbnail: string;
 }

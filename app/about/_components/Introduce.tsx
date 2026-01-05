@@ -28,9 +28,11 @@ function TypingText({ text, speed = 35 }: { text: string; speed?: number }) {
 export default function Introduce({
   data,
   slogan,
+  aboutThumbnail,
 }: {
   data: IHome;
   slogan?: string;
+  aboutThumbnail?: string;
 }) {
   return (
     <section className="py-10  h-full flex items-center justify-center  overflow-hidden">
@@ -41,7 +43,7 @@ export default function Introduce({
         className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
       >
         {/* CỘT TRÁI: NỘI DUNG VĂN BẢN */}
-        <div className="order-2 lg:order-1 flex flex-col gap-8 text-center lg:text-left">
+        <div className="order-2 lg:order-1 flex flex-col  text-center lg:text-left">
           <div className="space-y-2">
             <p className="text-primary font-medium tracking-widest uppercase">
               Nice to meet you!
@@ -102,7 +104,7 @@ export default function Introduce({
             <div className="absolute -inset-4 bg-gradient-to-tr from-blue-500 to-purple-500 rounded-full blur-2xl opacity-30 animate-pulse group-hover:opacity-50 transition-opacity" />
             <div className="relative w-[280px] h-[280px] md:w-[380px] md:h-[380px] lg:w-[420px] lg:h-[420px] overflow-hidden rounded-3xl border-4 border-white/20 shadow-2xl backdrop-blur-sm">
               <Image
-                src={data?.avatar_url || "/default-avatar.png"}
+                src={aboutThumbnail || "/default-avatar.png"}
                 alt="Profile"
                 fill
                 priority
