@@ -17,7 +17,7 @@ const getProjectsData = async (): Promise<IJob[] | null> => {
 
 export const metadata: Metadata = {
   title: "Projects - Qinh Portfolio",
-  description: "A showcase of my recent projects and works.",
+  description: "A showcase of my SELECTED WORKS and works.",
   icons: {
     icon: "/favicon.ico",
   },
@@ -29,7 +29,7 @@ export default async function Projects() {
     <section className="flex flex-col gap-10 py-10 ">
       <div className="col-span-2  space-y-5">
         <h1 className="text-2xl">Work</h1>
-        <span className="text-4xl font-bold">RECENT PROJECT</span>
+        <span className="text-4xl font-bold">SELECTED WORKS</span>
       </div>
       <ProjectItem data={projectsData} />
     </section>

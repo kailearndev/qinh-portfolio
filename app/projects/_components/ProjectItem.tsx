@@ -3,27 +3,34 @@
 import { Cursor, CursorFollow, CursorProvider } from "@/components/animate-ui/components/animate/cursor";
 import { IJob } from "@/types/Jobs";
 import { MoveRight } from "lucide-react";
-import { motion, Variant } from "motion/react";
+import { motion, Variants } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
-// 1. Tách Variants ra ngoài cho sạch code
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
     transition: {
       delay: i * 0.1,
-      duration: 0.8,
-      ease: [0.21, 0.47, 0.32, 0.98], // Cubic-bezier cho cảm giác mượt hơn
+      duration: 0.7,
+      ease: [0.21, 0.47, 0.32, 0.98],
     },
   }),
-} as any;
+};
 
 export default function ProjectItem({ data }: { data?: IJob[] | null }) {
-  // Không cần state mounted nữa vì Framer Motion xử lý SSR khá tốt
-  
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  // Nếu chưa mount thì trả về một bản skeleton/div trống hoặc div tĩnh để tránh layout shift
+  if (!isMounted) return <section className="grid xl:grid-cols-2 gap-16 opacity-0" />;
+
   return (
     <CursorProvider>
       <Cursor />
@@ -34,27 +41,21 @@ export default function ProjectItem({ data }: { data?: IJob[] | null }) {
             custom={index}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            variants={containerVariants}
-            whileHover={{ scale: 1.01 }}
+            // Giảm amount xuống 0.05 để nhạy hơn, hoặc dùng once: true
+            viewport={{ once: true, amount: 0.05 }}
+            variants={containerVariants as Variants}
             className="group flex lg:flex-row flex-col gap-8 cursor-pointer items-center"
           >
             {/* Image Container */}
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.4 }}
-              className="relative w-full lg:w-[400px] h-[250px] rounded-2xl overflow-hidden shadow-xl"
-            >
+            <div className="relative w-full lg:w-[400px] h-[250px] rounded-2xl overflow-hidden shadow-xl">
               <Image
                 fill
                 src={item.job_thumbnail || "/project-1.png"}
                 alt={item.title}
-                className="object-cover brightness-90 group-hover:brightness-110 transition-all duration-500"
+                className="object-cover brightness-90 group-hover:brightness-110 group-hover:scale-110 transition-all duration-700"
               />
-              
-              {/* Light sweep overlay - mượt hơn với CSS transition */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
-            </motion.div>
+            </div>
 
             {/* Text Content */}
             <Link href={`/projects/${item.slug}`} className="flex flex-1">
@@ -74,7 +75,7 @@ export default function ProjectItem({ data }: { data?: IJob[] | null }) {
             </Link>
           </motion.div>
         ))}
-        <CursorFollow>View</CursorFollow>
+        <CursorFollow>Who ? :D</CursorFollow>
       </section>
     </CursorProvider>
   );

@@ -4,135 +4,163 @@ import logo from "@/public/contact.json";
 import { IHome } from "@/types/Home";
 import gsap from "gsap";
 import Lottie from "lottie-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MdPhoneInTalk } from "react-icons/md";
 import { SiFacebook, SiGmail, SiTiktok } from "react-icons/si";
+import { ArrowUpRight } from "lucide-react";
 
 export default function ContactPage({ aboutData }: { aboutData: IHome }) {
   const containerRef = useRef(null);
   const titleRef = useRef(null);
   const cardsRef = useRef<HTMLAnchorElement[]>([]);
   const lottieRef = useRef(null);
+  
+  // 1. Thêm state để kiểm tra component đã mount hoàn toàn ở client chưa
+  const [isMounted, setIsMounted] = useState(false);
 
   const footers = [
-    {
-      id: 1,
-      name: "Facebook",
-      href: aboutData?.facebook,
-      icon: SiFacebook,
-      color: "#1877F2",
-    },
-    {
-      id: 2,
-      name: "TikTok",
-      href: `https://www.tiktok.com/${aboutData?.tiktok}`,
-      icon: SiTiktok,
-      color: "#000000",
-    },
-    {
-      id: 3,
-      name: "Phone",
-      href: `tel:${aboutData?.phone}`,
-      icon: MdPhoneInTalk,
-      color: "#22C55E",
-    },
-    {
-      id: 4,
-      name: "Email",
-      href: `mailto:${aboutData?.email}`,
-      icon: SiGmail,
-      color: "#EA4335",
-    },
+    { id: 1, name: "Facebook", href: aboutData?.facebook, icon: SiFacebook, color: "#1877F2", label: "Connect via Facebook" },
+    { id: 2, name: "TikTok", href: `https://www.tiktok.com/${aboutData?.tiktok}`, icon: SiTiktok, color: "#000000", label: "Connect via TikTok" },
+    { id: 3, name: "Phone", href: `tel:${aboutData?.phone}`, icon: MdPhoneInTalk, color: "#22C55E", label: "Call directly" },
+    { id: 4, name: "Email", href: `mailto:${aboutData?.email}`, icon: SiGmail, color: "#EA4335", label: "Send project request" },
   ];
 
   useEffect(() => {
+    setIsMounted(true); // Đánh dấu đã mount
+  }, []);
+
+  useEffect(() => {
+    if (!isMounted) return; // Chỉ chạy animation khi đã mount
+
     const ctx = gsap.context(() => {
-      // 1. Hiệu ứng Tiêu đề rơi xuống và nảy
-      gsap.from(titleRef.current, {
-        y: -50,
-        opacity: 0,
-        duration: 1.2,
-        ease: "bounce.out",
+      // Đảm bảo ban đầu các phần tử ẩn đi để tránh bị "nháy" nội dung trước khi chạy animation
+      gsap.set([titleRef.current, cardsRef.current, lottieRef.current], { opacity: 0 });
+
+      // 1. Tiêu đề
+      gsap.to(titleRef.current, {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power4.out",
+        startAt: { y: 50 } // Set vị trí bắt đầu ngay trong câu lệnh animation
       });
 
-      // 2. Hiệu ứng Lottie bay bồng bềnh liên tục
+      // 2. Lottie
       gsap.to(lottieRef.current, {
-        y: 20,
-        duration: 2,
+        opacity: 1,
+        duration: 0.8,
+      });
+      
+      gsap.to(lottieRef.current, {
+        y: -15,
+        rotation: 3,
+        duration: 3,
         repeat: -1,
         yoyo: true,
-        ease: "power1.inOut",
+        ease: "sine.inOut",
       });
 
-      // 3. Hiệu ứng các Card nảy lên lần lượt (Stagger)
-      gsap.from(cardsRef.current, {
-        scale: 0,
-        opacity: 0,
+      // 3. Cards nảy lên
+      gsap.to(cardsRef.current, {
+        y: 0,
+        opacity: 1,
         duration: 0.8,
-        stagger: 0.2,
-        ease: "back.out(1.7)", // Tạo độ nảy khi hiện ra
-        delay: 0.5,
+        stagger: 0.1,
+        ease: "back.out(1.2)",
+        delay: 0.3,
+        startAt: { y: 40 }
       });
     }, containerRef);
 
-    return () => ctx.revert(); // Dọn dẹp bộ nhớ khi unmount
-  }, []);
+    return () => ctx.revert();
+  }, [isMounted]); // Chạy lại effect này khi isMounted thay đổi thành true
 
-  // Hàm xử lý hover bằng GSAP cho từng card
+  // Hiệu ứng Hover
   const onMouseEnter = (index: number) => {
+    if (!cardsRef.current[index]) return;
     gsap.to(cardsRef.current[index], {
-      y: -10,
-      scale: 1.05,
+      scale: 1.02,
+      borderColor: "rgba(168, 85, 247, 0.5)",
+      backgroundColor: "rgba(255, 255, 255, 0.08)",
       duration: 0.3,
-      ease: "power2.out",
-      backgroundColor: "rgba(168, 85, 247, 0.2)",
     });
+    const iconBox = cardsRef.current[index].querySelector(".icon-box");
+    if (iconBox) {
+      gsap.to(iconBox, { rotate: 12, scale: 1.2, duration: 0.3 });
+    }
   };
 
   const onMouseLeave = (index: number) => {
+    if (!cardsRef.current[index]) return;
     gsap.to(cardsRef.current[index], {
-      y: 0,
       scale: 1,
-      duration: 0.3,
-      ease: "power2.in",
+      borderColor: "rgba(255, 255, 255, 0.1)",
       backgroundColor: "rgba(255, 255, 255, 0.05)",
+      duration: 0.3,
     });
+    const iconBox = cardsRef.current[index].querySelector(".icon-box");
+    if (iconBox) {
+      gsap.to(iconBox, { rotate: 0, scale: 1, duration: 0.3 });
+    }
   };
 
+  // Nếu chưa mounted, render một div trống với kích thước tương đương để tránh nhảy Layout
+  if (!isMounted) {
+    return <div className="min-h-screen" />;
+  }
+
   return (
-    <div
-      ref={containerRef}
-      className="flex flex-col h-full space-y-10 pb-20 max-w-xl mx-auto lg:mt-20 mt-10 lg:px-0 px-4"
-    >
-      <div ref={titleRef}>
-        <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
-          Let’s Work Together
-        </h1>
-        <p className="text-gray-300 text-lg">I'm a passionate designer...</p>
+    <div ref={containerRef} className="relative min-h-screen py-20 px-4 overflow-hidden">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-600/20 blur-[120px] rounded-full" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-600/20 blur-[120px] rounded-full" />
       </div>
 
-      <div ref={lottieRef} className="max-w-sm mx-auto">
-        <Lottie animationData={logo} loop />
-      </div>
+      <div className="max-w-4xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+        <div className="space-y-8">
+          <div ref={titleRef} className="space-y-4 opacity-0"> {/* Thêm opacity-0 ban đầu */}
+            <span className="px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-400 text-sm font-medium tracking-widest uppercase">
+              Get in touch
+            </span>
+            <h1 className="text-5xl md:text-7xl font-black leading-tight bg-gradient-to-br from-white via-white to-gray-500 bg-clip-text text-transparent">
+              Let’s create <br /> <span className="text-purple-500">Magic</span> together.
+            </h1>
+            <p className="text-gray-400 text-lg max-w-md leading-relaxed">
+              Bạn đang có ý tưởng? Mình sẵn sàng thảo luận bằng tiếng Nhật, Anh hoặc Việt.
+            </p>
+          </div>
 
-      <div className="flex flex-col gap-4 mt-10">
-        {footers.map((item, index) => (
-          <a
-            key={item.id}
-            href={item.href}
-            ref={(el) => {
-              if (el) cardsRef.current[index] = el;
-            }}
-            onMouseEnter={() => onMouseEnter(index)}
-            onMouseLeave={() => onMouseLeave(index)}
-            className="flex items-center gap-4 p-4 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md"
-          >
-            <div className="p-2 rounded-lg bg-white/10">
-              <item.icon size={26} style={{ color: item.color }} />
-            </div>
-            <span className="text-lg font-medium text-white">{item.name}</span>
-          </a>
-        ))}
+          <div ref={lottieRef} className="w-full max-w-[280px] drop-shadow-[0_0_30px_rgba(168,85,247,0.3)] opacity-0">
+            <Lottie animationData={logo} loop />
+          </div>
+        </div>
+
+        <div className="grid gap-4">
+          {footers.map((item, index) => (
+            <a
+              key={item.id}
+              href={item.href}
+              ref={(el) => { if (el) cardsRef.current[index] = el; }}
+              onMouseEnter={() => onMouseEnter(index)}
+              onMouseLeave={() => onMouseLeave(index)}
+              className="group relative flex items-center justify-between p-6 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl transition-all overflow-hidden opacity-0"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="flex items-center gap-5 relative z-10">
+                <div className="icon-box p-4 rounded-2xl bg-white/5 border border-white/10 shadow-inner">
+                  <item.icon size={28} style={{ color: item.color }} />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-white uppercase tracking-tight">{item.name}</h3>
+                  <p className="text-sm text-gray-500 font-medium">{item.label}</p>
+                </div>
+              </div>
+              <div className="relative z-10 opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-[-4px]">
+                 <ArrowUpRight className="text-white/50" />
+              </div>
+            </a>
+          ))}
+        </div>
       </div>
     </div>
   );

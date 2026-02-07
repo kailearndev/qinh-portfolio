@@ -1,6 +1,7 @@
 "use client";
 import DownloadButton from "@/components/DownloadButton";
 import { motion, type Variants } from "motion/react";
+import { useEffect, useState } from "react";
 
 const skills = [
   {
@@ -28,33 +29,23 @@ const containerVariants: Variants = {
   show: {
     opacity: 1,
     transition: { 
-      staggerChildren: 0.2, // Tăng nhẹ để thấy rõ hiệu ứng từng cái hiện ra
+      staggerChildren: 0.15,
       delayChildren: 0.1 
     },
   },
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 30, scale: 0.95 }, // Thêm scale nhẹ cho sinh động
+  hidden: { opacity: 0, y: 30, scale: 0.95 },
   show: {
     opacity: 1,
     y: 0,
     scale: 1,
     transition: { 
-      duration: 0.8, 
-      ease: [0.16, 1, 0.3, 1] // Quintic ease out: mượt và nhanh ở đầu, chậm về sau
+      duration: 0.6, 
+      ease: [0.16, 1, 0.3, 1] 
     },
   },
-};
-
-const iconVariants: Variants = {
-  hidden: { opacity: 0, scale: 0.5, rotate: -15 },
-  show: {
-    opacity: 1,
-    scale: 1,
-    rotate: 0,
-    transition: { type: "spring", stiffness: 200, damping: 15 } // Dùng spring cho icon cảm giác "nảy"
-  }
 };
 
 export default function ExpertiseSection({
@@ -64,17 +55,27 @@ export default function ExpertiseSection({
   slogan?: string;
   cv?: string;
 }) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Nếu chưa mounted thì trả về section ẩn để tránh Layout Shift nhưng vẫn giữ cấu trúc
+  if (!mounted) return <section className="opacity-0 py-20" />;
+
   return (
     <section className="relative max-w-7xl w-full mx-auto py-20 overflow-hidden">
-      {/* Background */}
+      {/* Background Glow */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-purple-600/10 blur-[120px] -z-10" />
 
+      {/* Header Section */}
       <motion.div
         className="px-6 md:px-10 mb-16 max-w-5xl flex flex-col gap-6"
         initial={{ opacity: 0, x: -30 }}
         whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8 }}
       >
         <h2 className="text-3xl md:text-5xl font-bold leading-tight">
           <span className="text-5xl md:text-7xl text-blue-400 font-serif mr-2">"</span>
@@ -83,10 +84,10 @@ export default function ExpertiseSection({
         </h2>
         
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
+          transition={{ delay: 0.3 }}
         >
           <DownloadButton cvUrl={cv || ""} />
         </motion.div>
@@ -97,37 +98,23 @@ export default function ExpertiseSection({
         variants={containerVariants}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, amount: 0.2 }} // Chạy ngay khi 20% section vào màn hình
+        viewport={{ once: true, amount: 0.1 }} // Để 0.1 để hiện lên ngay khi vừa thấy mép
         className="mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-6"
       >
         {skills.map((skill, index) => (
           <motion.div
             key={index}
             variants={itemVariants}
-            whileHover={{ 
-              y: -10, 
-              transition: { duration: 0.3, ease: "easeOut" } 
-            }}
+            whileHover={{ y: -10 }}
             className="relative group rounded-3xl p-8 bg-white/[0.03] backdrop-blur-2xl border border-white/10 overflow-hidden"
           >
-            {/* Glow effect on hover */}
             <div className={`absolute inset-0 bg-gradient-to-br ${skill.glow} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-
             <div className="relative z-10">
-              <motion.div
-                variants={iconVariants}
-                className="w-16 h-16 mb-6 flex items-center justify-center rounded-2xl bg-white/5 border border-white/10 text-3xl shadow-inner"
-              >
+              <div className="w-16 h-16 mb-6 flex items-center justify-center rounded-2xl bg-white/5 border border-white/10 text-3xl shadow-inner">
                 {skill.icon}
-              </motion.div>
-
-              <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-white transition-colors">
-                {skill.title}
-              </h3>
-
-              <p className="text-zinc-400 leading-relaxed group-hover:text-zinc-200 transition-colors whitespace-pre-line">
-                {skill.desc}
-              </p>
+              </div>
+              <h3 className="text-2xl font-bold mb-4 text-white">{skill.title}</h3>
+              <p className="text-zinc-400 leading-relaxed whitespace-pre-line">{skill.desc}</p>
             </div>
           </motion.div>
         ))}

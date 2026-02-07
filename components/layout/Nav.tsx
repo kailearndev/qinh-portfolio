@@ -11,7 +11,7 @@ export default function Nav() {
   const menu = [
     { name: "Home", href: "/", id: 1 },
     { name: "About", href: "/about", id: 2 },
-    { name: "Projects", href: "/projects", id: 3 },
+    { name: "EXPERIENCES", href: "/projects", id: 3 },
     { name: "Contact", href: "/contact", id: 4 },
   ];
 
