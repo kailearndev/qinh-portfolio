@@ -126,8 +126,8 @@ export default function ContactPage({ aboutData }: { aboutData: IHome }) {
               Let’s create <br /> <span className="text-purple-500">Magic</span> together.
             </h1>
             <p className="text-gray-400 text-lg max-w-md leading-relaxed">
-              Bạn đang có ý tưởng? Mình sẵn sàng thảo luận bằng tiếng Nhật, Anh hoặc Việt.
-            </p>
+For project inquiries, please contact me at qncreative1795@gmail.com.
+I am available for discussion in Japanese, English, or Vietnamese.            </p>
           </div>
 
           <div ref={lottieRef} className="w-full max-w-[280px] drop-shadow-[0_0_30px_rgba(168,85,247,0.3)] opacity-0">
