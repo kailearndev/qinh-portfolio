@@ -20,7 +20,9 @@ type CursorProviderProps = Omit<CursorProviderPropsPrimitive, 'children'> &
 function CursorProvider({ global, children, ...props }: CursorProviderProps) {
   return (
     <CursorProviderPrimitive global={global}>
-      <CursorContainerPrimitive {...props}>{children}</CursorContainerPrimitive>
+      <CursorContainerPrimitive asChild {...props}>
+        <div>{children}</div>
+      </CursorContainerPrimitive>
     </CursorProviderPrimitive>
   );
 }
