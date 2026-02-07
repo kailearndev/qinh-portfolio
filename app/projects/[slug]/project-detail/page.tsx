@@ -29,7 +29,7 @@ export default function ProjectDetail({ data }: { data: IProject }) {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, y: -40 }}
           transition={{ duration: 0.6, ease: "easeInOut" }}
-          className="grid md:grid-cols-2 lg:grid-cols-3  items-center justify-center text-white  gap-4 py-20"
+          className="grid md:grid-cols-2   items-center justify-center text-white  gap-10 py-20"
         >
           {/* Map toàn bộ mảng project */}
           {data.projects.map((item, idx) => (

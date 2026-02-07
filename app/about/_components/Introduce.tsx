@@ -24,8 +24,7 @@ function TypingText({ text, speed = 35 }: { text: string; speed?: number }) {
 }
 
 export default function Introduce({
-  data,
-  slogan,
+
   aboutThumbnail,
 }: {
   data: IHome;
@@ -38,9 +37,9 @@ export default function Introduce({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+        className="container mx-auto px-4 grid grid-cols-1 2xl:grid-cols-2 gap-12 items-center"
       >
-        <div className="order-2 lg:order-1 flex flex-col text-center lg:text-left">
+        <div className="order-2 lg:order-1 flex flex-col text-center lg:text-left ">
           <div className="flex flex-col gap-1 md:gap-2">
             {/* Phần dẫn nhập: Giữ màu Primary của bạn */}
             <div className="space-y-0">
@@ -69,7 +68,10 @@ export default function Introduce({
                 Creative <br className="md:hidden" /> World
               </span>
             </h1>
+            {/* Slogan với hiệu ứng gõ chữ */}
+
           </div>
+
         </div>
 
         {/* CỘT PHẢI: HÌNH ẢNH (Giữ nguyên) */}

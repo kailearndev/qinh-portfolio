@@ -27,7 +27,8 @@ export default function Nav() {
             <Image
               src="/logo.png"
               alt="Logo"
-              fill
+              width={120}
+              height={80}
               className="object-contain"
               priority
             />
@@ -35,7 +36,7 @@ export default function Nav() {
 
           <div className="flex flex-col gap-6">
             {menu.map((item) => {
-              const active = path === item.href;
+              const active = path === item.href || (item.href !== "/" && path.startsWith(item.href));
               return (
                 <Link
                   key={item.id}

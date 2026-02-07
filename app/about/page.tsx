@@ -41,16 +41,17 @@ export default async function About() {
     getExperienceData(),
     getAboutData(),
   ]);
+  console.log(homeData);
 
   return (
     <section className="flex flex-col overflow-hidden ">
       <Introduce
         data={homeData}
-        slogan={aboutData.slogan}
+
         aboutThumbnail={aboutData.about_thumbnail}
       />
 
-      <ExpertiseSection />
+      <ExpertiseSection slogan={aboutData.slogan} cv={homeData.file_cv} />
       <Experience experienceData={experienceData} />
     </section>
   );
