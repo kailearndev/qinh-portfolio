@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+export const revalidate = 5;
+
 import StarBorder from "@/components/StarBorder";
 import TrueFocus from "@/components/TrueFocus";
 import { createClient } from "@/lib/supabase";
@@ -5,6 +8,8 @@ import { IHome } from "@/types/Home";
 import { Metadata } from "next";
 import Link from "next/link";
 import ImageAnimation from "./(home)/_components/Background";
+
+
 
 const getHomeData = async (): Promise<IHome> => {
   const supabase = createClient();
