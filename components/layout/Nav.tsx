@@ -21,7 +21,7 @@ export default function Nav() {
       <MobileMenu menu={menu} />
 
       {/* Nav Desktop - Chỉ hiện trên lg:flex */}
-      <nav className="hidden lg:flex flex-col justify-between p-8 w-64 h-screen border-r border-white/5 text-white sticky top-0">
+      <nav className="hidden lg:flex flex-col justify-between p-8 w-64 h-screen   text-white sticky top-0 bg-linear-to-r from-background to-transparent">
         <div className="space-y-12">
           <div className="w-32 h-20 relative">
             <Image
@@ -52,7 +52,7 @@ export default function Nav() {
             })}
           </div>
         </div>
-        <div className="text-xs text-gray-500 uppercase tracking-widest">
+        <div className="text-lg text-center text-gray-500 uppercase tracking-widest">
           © {new Date().getFullYear()} Quynh Portfolio
         </div>
       </nav>

@@ -6,7 +6,7 @@ import gsap from "gsap";
 import Lottie from "lottie-react";
 import { useEffect, useRef, useState } from "react";
 import { MdPhoneInTalk } from "react-icons/md";
-import { SiFacebook, SiGmail, SiTiktok } from "react-icons/si";
+import { SiFacebook, SiGmail, SiInstagram, SiLine, SiTiktok, SiX } from "react-icons/si";
 import { ArrowUpRight } from "lucide-react";
 
 export default function ContactPage({ aboutData }: { aboutData: IHome }) {
@@ -20,9 +20,9 @@ export default function ContactPage({ aboutData }: { aboutData: IHome }) {
 
   const footers = [
     { id: 1, name: "Facebook", href: aboutData?.facebook, icon: SiFacebook, color: "#1877F2", label: "Connect via Facebook" },
-    { id: 2, name: "TikTok", href: `https://www.tiktok.com/${aboutData?.tiktok}`, icon: SiTiktok, color: "#000000", label: "Connect via TikTok" },
-    { id: 3, name: "Phone", href: `tel:${aboutData?.phone}`, icon: MdPhoneInTalk, color: "#22C55E", label: "Call directly" },
-    { id: 4, name: "Email", href: `mailto:${aboutData?.email}`, icon: SiGmail, color: "#EA4335", label: "Send project request" },
+    { id: 2, name: "X", href: `${aboutData?.x}`, icon: SiX, color: "#000000", label: "Connect via X" },
+    { id: 3, name: "Instagram", href: `${aboutData?.ig}`, icon: SiInstagram, color: "#E1306C", label: "Connect via Instagram" },
+    { id: 4, name: "Line", href: `${aboutData?.line}`, icon: SiLine, color: "#22C55E", label: "Connect via Line" },
   ];
 
   useEffect(() => {

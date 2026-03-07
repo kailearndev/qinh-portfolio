@@ -3,9 +3,9 @@ export interface IHome {
   avatar_url: string;
   created_at: string;
   positions: string;
-  phone: string;
-  email: string;
-  tiktok: string;
+  ig: string;
+  line: string;
+  x: string;
   website: string;
   address: string;
   name: string;

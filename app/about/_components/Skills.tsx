@@ -78,9 +78,11 @@ export default function ExpertiseSection({
         transition={{ duration: 0.8 }}
       >
         <h2 className="text-3xl md:text-5xl font-bold leading-tight">
-          <span className="text-5xl md:text-7xl text-blue-400 font-serif mr-2">"</span>
+          <span className="text-5xl md:text-7xl text-blue-400 font-serif mr-2">
+             “
+          </span>
           {slogan}
-          <span className="text-5xl md:text-7xl text-purple-500 font-serif ml-2">"</span>
+          <span className="text-5xl md:text-7xl text-purple-500 font-serif ml-2">”</span>
         </h2>
         
         <motion.div
@@ -88,6 +90,7 @@ export default function ExpertiseSection({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
+          className="pl-20"
         >
           <DownloadButton cvUrl={cv || ""} />
         </motion.div>
@@ -106,9 +109,9 @@ export default function ExpertiseSection({
             key={index}
             variants={itemVariants}
             whileHover={{ y: -10 }}
-            className="relative group rounded-3xl p-8 bg-white/[0.03] backdrop-blur-2xl border border-white/10 overflow-hidden"
+            className="relative group rounded-3xl p-8 bg-white/3 backdrop-blur-2xl border border-white/10 overflow-hidden"
           >
-            <div className={`absolute inset-0 bg-gradient-to-br ${skill.glow} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+            <div className={`absolute inset-0 bg-linear-to-br ${skill.glow} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
             <div className="relative z-10">
               <div className="w-16 h-16 mb-6 flex items-center justify-center rounded-2xl bg-white/5 border border-white/10 text-3xl shadow-inner">
                 {skill.icon}
