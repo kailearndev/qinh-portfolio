@@ -59,16 +59,16 @@ export default async function Home() {
         </div>
 
         <p className="mt-6 mb-10 text-gray-400 max-w-md leading-relaxed text-lg">
-          Crafting digital experiences through clean code and aesthetic design.
+          Crafting aesthetic digital experiences for Japanese and SE Asian brands.
           Based in Vietnam, working globally.
         </p>
 
         <Link href="/about">
           <StarBorder
             as="button"
-            className="px-8 py-4 text-sm font-bold uppercase tracking-[0.2em]"
+            className="px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] cursor-pointer"
             color="cyan"
-            speed="3s"
+            speed="1s"
           >
             Explore My Work
           </StarBorder>
@@ -79,7 +79,7 @@ export default async function Home() {
       <div className="w-full lg:w-[45%] h-[50vh] lg:h-full relative flex items-center justify-center">
         <ImageAnimation
           url={homeData?.avatar_url}
-          // Chuyển positions vào nếu ImageAnimation cần hiển thị text phụ
+        // Chuyển positions vào nếu ImageAnimation cần hiển thị text phụ
         />
       </div>
     </section>

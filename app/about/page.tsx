@@ -47,11 +47,14 @@ export default async function About() {
     <section className="flex flex-col overflow-hidden ">
       <Introduce
         data={homeData}
-
+        cv={homeData.file_cv}
+        slogan={aboutData.slogan}
         aboutThumbnail={aboutData.about_thumbnail}
       />
 
-      <ExpertiseSection slogan={aboutData.slogan} cv={homeData.file_cv} />
+
+      {/* <ExpertiseSection slogan={aboutData.slogan} cv={homeData.file_cv} /> */}
+       <ExpertiseSection  />
       <Experience experienceData={experienceData} />
     </section>
   );

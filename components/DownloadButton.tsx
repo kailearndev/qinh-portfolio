@@ -56,12 +56,7 @@ export default function DownloadButton({ cvUrl }: { cvUrl: string }) {
           <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] transition-transform" />
 
           {/* 3. Icon Download với chuyển động nhún */}
-          <motion.div
-            animate={{ y: [0, 3, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-          >
-            <Download size={22} className="text-blue-500" />
-          </motion.div>
+
 
           <span className="relative z-10 tracking-tight">Download My CV</span>
 

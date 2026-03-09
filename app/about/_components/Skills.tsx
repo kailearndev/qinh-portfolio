@@ -1,5 +1,6 @@
 "use client";
 import DownloadButton from "@/components/DownloadButton";
+import { Quote } from "lucide-react";
 import { motion, type Variants } from "motion/react";
 import { useEffect, useState } from "react";
 
@@ -28,9 +29,9 @@ const containerVariants: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: { 
+    transition: {
       staggerChildren: 0.15,
-      delayChildren: 0.1 
+      delayChildren: 0.1
     },
   },
 };
@@ -41,20 +42,14 @@ const itemVariants: Variants = {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { 
-      duration: 0.6, 
-      ease: [0.16, 1, 0.3, 1] 
+    transition: {
+      duration: 0.6,
+      ease: [0.16, 1, 0.3, 1]
     },
   },
 };
 
-export default function ExpertiseSection({
-  slogan,
-  cv,
-}: {
-  slogan?: string;
-  cv?: string;
-}) {
+export default function ExpertiseSection() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -62,40 +57,16 @@ export default function ExpertiseSection({
   }, []);
 
   // Nếu chưa mounted thì trả về section ẩn để tránh Layout Shift nhưng vẫn giữ cấu trúc
-  if (!mounted) return <section className="opacity-0 py-20" />;
+  if (!mounted) return <section className="opacity-0 py-10" />;
 
   return (
-    <section className="relative max-w-7xl w-full mx-auto py-20 overflow-hidden">
+    <section className="relative  w-full mx-auto py-5 overflow-hidden">
       {/* Background Glow */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-purple-600/10 blur-[120px] -z-10" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px]  -z-10" />
 
       {/* Header Section */}
-      <motion.div
-        className="px-6 md:px-10 mb-16 max-w-5xl flex flex-col gap-6"
-        initial={{ opacity: 0, x: -30 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.8 }}
-      >
-        <h2 className="text-3xl md:text-5xl font-bold leading-tight">
-          <span className="text-5xl md:text-7xl text-blue-400 font-serif mr-2">
-             “
-          </span>
-          {slogan}
-          <span className="text-5xl md:text-7xl text-purple-500 font-serif ml-2">”</span>
-        </h2>
-        
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-          className="pl-20"
-        >
-          <DownloadButton cvUrl={cv || ""} />
-        </motion.div>
-      </motion.div>
-      
+
+
       {/* Content Grid */}
       <motion.div
         variants={containerVariants}
