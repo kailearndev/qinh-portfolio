@@ -52,9 +52,9 @@ export default function ProjectItem({ data }: { data?: IJob[] | null }) {
                 fill
                 src={item.job_thumbnail || "/project-1.png"}
                 alt={item.title}
-                className="object-cover brightness-90 group-hover:brightness-110 group-hover:scale-110 transition-all duration-700"
+                className="object-cover brightness-90 group-hover:brightness-110 group-hover:scale-110 transition-all duration-700 aspect-1920/1080"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+              <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
             </div>
 
             {/* Text Content */}

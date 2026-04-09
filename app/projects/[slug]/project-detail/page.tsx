@@ -13,7 +13,6 @@ export default function ProjectDetail({ data }: { data: IProject }) {
     setMounted(true);
   }, []);
 
-  console.log(data);
 
   return (
     <ClickSpark
@@ -59,7 +58,7 @@ export default function ProjectDetail({ data }: { data: IProject }) {
                   fill
                   src={item.thumnail_url || "/no-img.webp"}
                   alt={item.title}
-                  className="object-cover rounded-2xl brightness-90 hover:brightness-110 transition-all duration-500"
+                  className="rounded-2xl brightness-90 hover:brightness-110 transition-all duration-500 md:aspect-1920/1080 "
                 />
 
                 {/* hiệu ứng quét ánh sáng */}
